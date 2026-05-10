@@ -38,8 +38,7 @@ function logSupabaseError(scope: string, error: {
   hint?: string | null;
   message?: string;
 }) {
-  void scope;
-  void error;
+  console.error(`SUPABASE_${scope.toUpperCase()}_ERROR`, getSupabaseErrorMeta(error));
 }
 
 function getSupabaseErrorMeta(error: {
