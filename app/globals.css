@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --color-bg-main: #0b0b0c;
+  --color-bg-card: #111214;
+  --color-bg-glass: rgba(255, 255, 255, 0.03);
+  --color-gold: #c9a227;
+  --color-gold-soft: #e5c76b;
+  --color-green: #1dba74;
+  --color-red: #e5484d;
+  --color-blue: #3b82f6;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #6b7280;
+  --radius-button: 12px;
+  --radius-card: 24px;
+}
+
+html {
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply min-h-screen bg-background text-zinc-100 antialiased;
+  font-family: var(--font-heebo), sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(201, 162, 39, 0.18), transparent 34rem),
+    radial-gradient(circle at 16% 8%, rgba(229, 199, 107, 0.08), transparent 30rem),
+    linear-gradient(180deg, var(--color-bg-main) 0%, #09090a 48%, var(--color-bg-main) 100%);
+}
+
+a {
+  @apply transition-colors;
+}
+
+input,
+select,
+textarea {
+  @apply outline-none;
+}
+
+option {
+  @apply bg-zinc-950 text-zinc-100;
+}
+
+@keyframes success-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.panel {
+  @apply rounded-[24px] border border-white/[0.08] bg-glass shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-gold/20 hover:shadow-[0_28px_80px_rgba(0,0,0,0.34),0_0_26px_rgba(201,162,39,0.08)];
+}
+
+.field {
+  @apply w-full rounded-xl border border-white/10 bg-black/35 px-4 py-3 text-sm text-white placeholder:text-zinc-500 transition focus:border-gold/60 focus:ring-4 focus:ring-gold/10;
+}
+
+.button-primary {
+  @apply inline-flex min-h-11 items-center justify-center rounded-xl bg-gradient-to-l from-gold to-gold-soft px-5 py-3 text-sm font-bold text-black shadow-[0_12px_30px_rgba(0,0,0,0.22),0_0_24px_rgba(201,162,39,0.24)] transition duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.28),0_0_38px_rgba(201,162,39,0.38)] active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.button-secondary {
+  @apply inline-flex min-h-11 items-center justify-center rounded-xl border border-white/[0.08] bg-card px-5 py-3 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-200 hover:-translate-y-0.5 hover:border-white/15 hover:bg-white/[0.07] hover:text-white hover:shadow-[0_0_24px_rgba(201,162,39,0.10)] active:scale-[0.97];
+}
+
+.button-danger {
+  @apply inline-flex min-h-11 items-center justify-center rounded-xl border border-danger/35 bg-danger/15 px-5 py-3 text-sm font-bold text-red-100 transition duration-200 hover:-translate-y-0.5 hover:bg-danger/25 hover:shadow-[0_0_24px_rgba(229,72,77,0.18)] active:scale-[0.97];
+}
+
+.button-success {
+  @apply inline-flex min-h-12 items-center justify-center rounded-xl bg-gradient-to-l from-gold to-gold-soft px-6 py-3 text-sm font-black text-black shadow-[0_14px_36px_rgba(0,0,0,0.26),0_0_34px_rgba(201,162,39,0.34)] transition duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_18px_46px_rgba(0,0,0,0.32),0_0_46px_rgba(201,162,39,0.44)] active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.card-default {
+  @apply rounded-[24px] border border-white/[0.08] bg-card/80 shadow-soft backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-gold/20;
+}
+
+.card-money {
+  @apply rounded-[24px] border border-gold/20 bg-gradient-to-br from-gold/15 to-glass shadow-[0_24px_70px_rgba(0,0,0,0.28),0_0_26px_rgba(201,162,39,0.10)] backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-gold/35;
+}
+
+.card-success {
+  @apply rounded-[24px] border border-success/20 bg-gradient-to-br from-success/15 to-glass shadow-[0_24px_70px_rgba(0,0,0,0.28),0_0_24px_rgba(29,186,116,0.08)] backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-success/35;
+}
+
+.card-danger {
+  @apply rounded-[24px] border border-danger/20 bg-gradient-to-br from-danger/15 to-glass shadow-[0_24px_70px_rgba(0,0,0,0.28),0_0_24px_rgba(229,72,77,0.08)] backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-danger/35;
+}
+
+.success-pop {
+  animation: success-pop 260ms ease-out both;
+}

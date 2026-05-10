@@ -1,0 +1,93 @@
+-- Replace the UUID below with an existing auth.users.id before running.
+-- These rows are persisted test data, not application mock data.
+insert into public.leads (
+  user_id,
+  name,
+  phone,
+  value,
+  source,
+  status,
+  reason_not_closed,
+  notes,
+  last_contact_date,
+  next_action_date,
+  next_action_type,
+  deal_probability,
+  priority
+)
+values
+  (
+    '00000000-0000-0000-0000-000000000000',
+    'דנה לוי',
+    '050-1234567',
+    7200,
+    'אתר',
+    'ליד חדש',
+    null,
+    'מתעניינת בליווי אישי. ביקשה לחזור אליה בערב.',
+    now() - interval '1 day',
+    now() + interval '3 hours',
+    'call',
+    35,
+    'high'
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    'אורי כהן',
+    '052-7654321',
+    4800,
+    'הפניה',
+    'אין מענה',
+    'לא ענה לשתי שיחות',
+    'כדאי לשלוח הודעה קצרה לפני שיחה נוספת.',
+    now() - interval '2 days',
+    now() - interval '2 hours',
+    'message',
+    20,
+    'medium'
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    'מיכל ברק',
+    '054-1112233',
+    9500,
+    'אינסטגרם',
+    'נקבעה שיחה',
+    null,
+    'נקבעה שיחת התאמה ראשונית. מתעניינת בתהליך עסקי קצר.',
+    now(),
+    now() + interval '1 day',
+    'call',
+    55,
+    'high'
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    'יואב אמיר',
+    '053-4445566',
+    12500,
+    'לינקדאין',
+    'נקבעה פגישה',
+    null,
+    'צריך להכין שאלות על יעדי המכירות לפני הפגישה.',
+    now() - interval '5 hours',
+    now() + interval '2 days',
+    'follow-up',
+    65,
+    'medium'
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    'נועה רוזן',
+    '058-9876543',
+    18000,
+    'וובינר',
+    'ניתנה הצעת מחיר',
+    null,
+    'קיבלה הצעה לתהליך של 12 שבועות. מחכה לאישור תקציב.',
+    now() - interval '1 day',
+    now() + interval '4 days',
+    'follow-up',
+    80,
+    'high'
+  );

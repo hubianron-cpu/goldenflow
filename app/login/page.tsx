@@ -1,0 +1,94 @@
+import { AlertTriangle, LogIn, UserPlus } from "lucide-react";
+import { StatusMessage } from "@/components/status-message";
+import { hasSupabaseEnv } from "@/lib/env";
+import { signIn, signUp } from "@/lib/actions";
+
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string; success?: string }>;
+}) {
+  const params = await searchParams;
+  const supabaseReady = hasSupabaseEnv();
+
+  return (
+    <main className="mx-auto flex min-h-screen max-w-6xl items-center px-4 py-8">
+      <div className="grid w-full gap-6 lg:grid-cols-[1fr_420px]">
+        <section className="overflow-hidden rounded-[28px] border border-gold/20 bg-[radial-gradient(circle_at_top_right,rgba(201,162,39,0.20),rgba(8,8,8,0.96)_52%)] p-8 text-white shadow-gold lg:p-10">
+          <p className="text-sm font-bold text-gold-soft">ניהול לקוחות למאמנים</p>
+          <h1 className="mt-5 max-w-2xl text-4xl font-black leading-tight lg:text-6xl">
+            מערכת CRM שעוזרת לך לסגור יותר עסקאות בכל יום.
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-300">
+            לידים, משימות, פייפליין ומערכת סגירה יומית במקום אחד. פחות ניחושים, יותר פעולות שמביאות כסף.
+          </p>
+
+          <div className="mt-8 grid gap-3 md:grid-cols-3">
+            {[
+              ["Daily Closing", "מי צריך פעולה עכשיו"],
+              ["Pipeline", "איפה נמצא הכסף"],
+              ["Follow-up", "מה חוזר לטיפול היום"],
+            ].map(([title, description]) => (
+              <div key={title} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="font-bold text-gold-soft">{title}</p>
+                <p className="mt-2 text-sm leading-6 text-zinc-300">{description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="panel p-6 lg:p-8">
+          <h2 className="text-2xl font-black">כניסה למערכת</h2>
+          <p className="mt-2 text-sm text-zinc-400">התחברו כדי לנהל לידים, משימות ופייפליין מכירה.</p>
+
+          <div className="mt-5">
+            <StatusMessage error={params.error} success={params.success} />
+          </div>
+
+          {!supabaseReady ? (
+            <div className="mb-5 flex gap-3 rounded-xl border border-danger/25 bg-danger/10 px-4 py-3 text-sm leading-6 text-red-100">
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+              <p>חסרים משתני Supabase בקובץ .env.local להפעלת התחברות ושמירת נתונים.</p>
+            </div>
+          ) : null}
+
+          <form action={signIn} className="space-y-4">
+            <label className="block text-sm font-semibold text-zinc-200">
+              מייל
+              <input name="email" type="email" className="field mt-2" required disabled={!supabaseReady} />
+            </label>
+            <label className="block text-sm font-semibold text-zinc-200">
+              סיסמה
+              <input name="password" type="password" className="field mt-2" minLength={6} required disabled={!supabaseReady} />
+            </label>
+            <button type="submit" className="button-primary w-full gap-2" disabled={!supabaseReady}>
+              <LogIn className="h-4 w-4" />
+              התחברות
+            </button>
+          </form>
+
+          <div className="my-6 h-px bg-white/10" />
+
+          <form action={signUp} className="space-y-4">
+            <label className="block text-sm font-semibold text-zinc-200">
+              שם פרטי
+              <input name="first_name" className="field mt-2" minLength={2} required disabled={!supabaseReady} />
+            </label>
+            <label className="block text-sm font-semibold text-zinc-200">
+              מייל חדש
+              <input name="email" type="email" className="field mt-2" required disabled={!supabaseReady} />
+            </label>
+            <label className="block text-sm font-semibold text-zinc-200">
+              סיסמה חדשה
+              <input name="password" type="password" className="field mt-2" minLength={6} required disabled={!supabaseReady} />
+            </label>
+            <button type="submit" className="button-secondary w-full gap-2" disabled={!supabaseReady}>
+              <UserPlus className="h-4 w-4" />
+              יצירת חשבון
+            </button>
+          </form>
+        </section>
+      </div>
+    </main>
+  );
+}
