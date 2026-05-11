@@ -3,7 +3,7 @@ create extension if not exists "pgcrypto";
 create table if not exists public.leads (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
-  name text not null,
+  full_name text not null,
   phone text not null,
   value numeric not null default 0,
   source text not null,
@@ -77,7 +77,7 @@ where status in ('New', 'Contacted', 'Call Scheduled', 'Won', 'Lost');
 
 alter table public.leads
   alter column user_id set not null,
-  alter column name set not null,
+  alter column full_name set not null,
   alter column phone set not null,
   alter column value set default 0,
   alter column value set not null,

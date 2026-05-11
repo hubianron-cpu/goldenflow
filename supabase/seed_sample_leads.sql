@@ -2,7 +2,7 @@
 -- These rows are persisted test data, not application mock data.
 insert into public.leads (
   user_id,
-  name,
+  full_name,
   phone,
   value,
   source,

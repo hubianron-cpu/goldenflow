@@ -16,7 +16,7 @@ import { getDefaultLeadOwnerId, getSupabaseAdminClient } from "@/lib/supabase/ad
 import { createServerClient } from "@/lib/supabase/server";
 
 const leadSelect =
-  "id, closed_at, created_at, deal_probability, last_contact_date, name, next_action_date, next_action_type, notes, phone, priority, reason_not_closed, source, status, updated_at, user_id, value";
+  "id, closed_at, created_at, deal_probability, last_contact_date, name:full_name, next_action_date, next_action_type, notes, phone, priority, reason_not_closed, source, status, updated_at, user_id, value";
 type LeadWriteClient = NonNullable<ReturnType<typeof getSupabaseAdminClient>>;
 
 function jsonError(message: string, status: number, meta?: Record<string, unknown>) {
@@ -450,7 +450,7 @@ export async function POST(request: Request) {
         next_action_date: now,
         next_action_type: "call",
         source: lead.source,
-        ...(existingLead.name.startsWith("WhatsApp ") && lead.name ? { name: lead.name } : {}),
+        ...(existingLead.name.startsWith("WhatsApp ") && lead.name ? { full_name: lead.name } : {}),
       })
       .eq("id", existingLead.id)
       .eq("user_id", ownerId)
@@ -479,7 +479,7 @@ export async function POST(request: Request) {
     .insert({
       deal_probability: lead.deal_probability,
       last_contact_date: now,
-      name: leadName,
+      full_name: leadName,
       next_action_date: now,
       notes: lead.notes,
       status: lead.status satisfies LeadStatus,
@@ -548,7 +548,7 @@ export async function PATCH(request: Request) {
       return jsonError("Lead name is required.", 400);
     }
 
-    update.name = name;
+    update.full_name = name;
   }
 
   if ("phone" in record) {

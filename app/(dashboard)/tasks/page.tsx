@@ -33,7 +33,7 @@ export default async function TasksPage({
       .is("deleted_at", null)
       .order("status", { ascending: true })
       .order("due_date", { ascending: true, nullsFirst: false }),
-    supabase.from("leads").select("id, name, phone, value").eq("user_id", user.id).order("name"),
+    supabase.from("leads").select("id, name:full_name, phone, value").eq("user_id", user.id).order("full_name"),
     getUsers(),
   ]);
 

@@ -12,7 +12,7 @@ create table if not exists public.users (
 create table if not exists public.leads (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
-  name text not null,
+  full_name text not null,
   phone text not null,
   value numeric not null default 0,
   source text not null,

@@ -40,7 +40,7 @@ export type Database = {
           deal_probability: number;
           id: string;
           last_contact_date: string | null;
-          name: string;
+          full_name: string;
           next_action_date: string | null;
           next_action_type: string | null;
           notes: string | null;
@@ -59,7 +59,7 @@ export type Database = {
           deal_probability?: number;
           id?: string;
           last_contact_date?: string | null;
-          name: string;
+          full_name: string;
           next_action_date?: string | null;
           next_action_type?: string | null;
           notes?: string | null;
@@ -78,7 +78,7 @@ export type Database = {
           deal_probability?: number;
           id?: string;
           last_contact_date?: string | null;
-          name?: string;
+          full_name?: string;
           next_action_date?: string | null;
           next_action_type?: string | null;
           notes?: string | null;
