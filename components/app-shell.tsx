@@ -31,7 +31,7 @@ export function AppShell({
               <div className="min-w-0 flex-1 overflow-visible">
                 <div className="flex items-start gap-2">
                   <p className="whitespace-normal break-words text-[13px] font-black leading-5 tracking-tight text-white [overflow:visible] [text-overflow:unset] sm:text-sm">
-                    ניהול לקוחות למאמנים
+                    מרכז השליטה של העסק שלך
                   </p>
                   <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-gold/25 bg-black/30 text-gold-soft">
                     <Crown className="h-3.5 w-3.5" />

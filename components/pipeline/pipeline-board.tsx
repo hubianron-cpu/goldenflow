@@ -76,7 +76,7 @@ export function PipelineBoard() {
     const payload = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      setError(payload.error || "לא הצלחנו לטעון את הפייפליין.");
+      setError(payload.error || "לא הצלחנו לטעון את מסלול המכירה.");
       setLeads([]);
       return;
     }
@@ -215,7 +215,7 @@ export function PipelineBoard() {
   }
 
   if (loading) {
-    return <LoadingCard label="טוען פייפליין..." />;
+    return <LoadingCard label="טוען מסלול המכירה..." />;
   }
 
   return (
@@ -224,7 +224,7 @@ export function PipelineBoard() {
 
       {leads.length === 0 ? (
         <section className="panel p-6 text-center">
-          <p className="text-lg font-semibold">אין עדיין לידים בפייפליין</p>
+          <p className="text-lg font-semibold">אין עדיין לידים במסלול המכירה</p>
           <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-zinc-400">
             הוסיפו לידים במסך הלידים, והם יופיעו כאן לפי שלב המכירה שלהם.
           </p>

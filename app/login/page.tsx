@@ -18,12 +18,12 @@ export default async function LoginPage({
     <main className="mx-auto flex min-h-screen max-w-6xl items-center px-4 py-8">
       <div className="grid w-full gap-6 lg:grid-cols-[1fr_420px]">
         <section className="overflow-hidden rounded-[28px] border border-gold/20 bg-[radial-gradient(circle_at_top_right,rgba(201,162,39,0.20),rgba(8,8,8,0.96)_52%)] p-8 text-white shadow-gold lg:p-10">
-          <p className="text-sm font-bold text-gold-soft">ניהול לקוחות למאמנים</p>
+          <p className="text-sm font-bold text-gold-soft">מרכז השליטה של העסק שלך</p>
           <h1 className="mt-5 max-w-2xl text-4xl font-black leading-tight lg:text-6xl">
             מערכת CRM שעוזרת לך לסגור יותר עסקאות בכל יום.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-300">
-            לידים, משימות, פייפליין ומערכת סגירה יומית במקום אחד. פחות ניחושים, יותר פעולות שמביאות כסף.
+            לידים, המשימות שלי, מסלול המכירה ומערכת סגירה יומית במקום אחד. פחות ניחושים, יותר פעולות שמביאות כסף.
           </p>
 
           <div className="mt-8 grid gap-3 md:grid-cols-3">
@@ -42,7 +42,7 @@ export default async function LoginPage({
 
         <section className="panel p-6 lg:p-8">
           <h2 className="text-2xl font-black">כניסה למערכת</h2>
-          <p className="mt-2 text-sm text-zinc-400">התחברו כדי לנהל לידים, משימות ופייפליין מכירה.</p>
+          <p className="mt-2 text-sm text-zinc-400">התחברו כדי לנהל לידים, המשימות שלי ומסלול המכירה.</p>
 
           <div className="mt-5">
             <StatusMessage error={visibleError} success={params.success} />

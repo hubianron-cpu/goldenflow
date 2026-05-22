@@ -51,7 +51,7 @@ export default async function TasksPage({
     <div className="space-y-8">
       <SectionHeader
         eyebrow="Tasks"
-        title="ניהול משימות"
+        title="המשימות שלי"
         description="מערכת משימות יומית שמחברת פולואפים, לידים וסגירת עסקאות במקום אחד ברור."
       />
       <StatusMessage error={params.error || dataError} success={params.success} />

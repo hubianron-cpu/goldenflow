@@ -6,7 +6,7 @@ export default function PipelinePage() {
     <div className="space-y-6">
       <SectionHeader
         eyebrow="Pipeline"
-        title="פייפליין מכירה"
+        title="מסלול המכירה"
         description="מעקב מהיר אחר שלבי המכירה, שווי העסקאות והתקדמות כל ליד בלחיצה אחת."
       />
       <PipelineBoard />

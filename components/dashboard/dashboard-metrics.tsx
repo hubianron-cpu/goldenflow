@@ -150,7 +150,7 @@ function getActionReason(lead: Lead) {
   }
 
   if (days >= STUCK_AFTER_DAYS) {
-    return "תקוע בפייפליין - להחזיר תנועה";
+    return "תקוע במסלול המכירה - להחזיר תנועה";
   }
 
   if ((lead.value || 0) >= 10000) {
@@ -215,7 +215,7 @@ function getDailyReason(lead: Lead) {
   }
 
   if (normalizeLeadStatus(lead.status) === "דורש המשך טיפול") {
-    reasons.push("צריך החזרה לפייפליין");
+    reasons.push("צריך החזרה למסלול המכירה");
   }
 
   return reasons.length ? reasons.join(" + ") : getActionReason(lead);
@@ -548,7 +548,7 @@ export function DashboardMetrics() {
     const payload = (await response.json().catch(() => ({}))) as { lead?: Lead } & Record<string, unknown>;
 
     if (!response.ok) {
-      setError(getApiErrorMessage(payload, "לא הצלחנו להחזיר את הליד לפייפליין."));
+      setError(getApiErrorMessage(payload, "לא הצלחנו להחזיר את הליד למסלול המכירה."));
       setUpdatingLeadId(null);
       return;
     }
@@ -556,7 +556,7 @@ export function DashboardMetrics() {
     if (payload.lead) {
       setLeads((current) => current.map((item) => (item.id === payload.lead?.id ? payload.lead : item)));
     }
-    setSuccess("הליד חזר לפייפליין ונקבע לטיפול היום.");
+    setSuccess("הליד חזר למסלול המכירה ונקבע לטיפול היום.");
     await loadLeads();
     setUpdatingLeadId(null);
   }
@@ -786,7 +786,7 @@ export function DashboardMetrics() {
             onClick={() => document.getElementById("daily-command-center")?.scrollIntoView({ behavior: "smooth", block: "start" })}
             type="button"
           >
-            התחל לסגור עכשיו 🔥
+            התחל סגירה יומית 🔥
           </button>
         </div>
       </section>
@@ -1250,7 +1250,7 @@ export function DashboardMetrics() {
             label: "לידים פעילים",
             meta: "לידים שעוד דורשים עבודה היום",
             rawValue: metrics.active,
-            sublabel: metrics.active > 0 ? "יש תנועה בפייפליין" : "אין לידים פעילים",
+            sublabel: metrics.active > 0 ? "יש תנועה במסלול המכירה" : "אין לידים פעילים",
             tone: "text-gold",
             value: metrics.active,
           },
@@ -1258,9 +1258,9 @@ export function DashboardMetrics() {
             accent: "from-gold/20 to-gold-soft/5",
             icon: BadgeDollarSign,
             label: "פוטנציאל הכנסות",
-            meta: "שווי כולל של כל הפייפליין",
+            meta: "שווי כולל של כל מסלול המכירה",
             rawValue: metrics.totalValue,
-            sublabel: metrics.totalValue > 0 ? "הכסף שנמצא במערכת" : "עוד אין פייפליין",
+            sublabel: metrics.totalValue > 0 ? "הכסף שנמצא במערכת" : "עוד אין מסלול מכירה",
             tone: "text-gold",
             value: formatMoney(metrics.totalValue),
           },
@@ -1624,7 +1624,7 @@ export function DashboardMetrics() {
             <p className="mt-2 text-sm leading-6 text-zinc-400/80">תמונה רחבה של איפה הכסף נמצא ומה צריך לקבל תשומת לב.</p>
           </div>
           <div className="rounded-3xl border border-gold/25 bg-gold/10 px-5 py-4 text-left shadow-[0_0_30px_rgba(201,162,39,0.12)]">
-            <p className="text-xs text-gold-soft/90">סה״כ פייפליין</p>
+            <p className="text-xs text-gold-soft/90">סה״כ מסלול המכירה</p>
             <p className="mt-1 text-3xl font-semibold tracking-tight text-white drop-shadow-[0_0_18px_rgba(201,162,39,0.16)]">{formatMoney(metrics.totalValue)}</p>
           </div>
         </div>
@@ -1691,7 +1691,7 @@ export function DashboardMetrics() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h3 className="text-lg font-semibold">משפך המרה</h3>
-            <p className="mt-1 text-sm text-zinc-400">מספרים אמיתיים מהפייפליין: סה״כ → קשר → פגישות → הצעה.</p>
+            <p className="mt-1 text-sm text-zinc-400">מספרים אמיתיים ממסלול המכירה: סה״כ → קשר → פגישות → הצעה.</p>
           </div>
           <BadgeDollarSign className="h-5 w-5 text-gold" />
         </div>

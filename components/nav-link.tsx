@@ -7,10 +7,10 @@ import { KanbanSquare, LayoutDashboard, ListTodo, Users, type LucideIcon } from 
 import { cn } from "@/lib/utils";
 
 const navigation = [
-  { href: "/dashboard", label: "סקירה", icon: LayoutDashboard },
+  { href: "/dashboard", label: "מרכז שליטה", icon: LayoutDashboard },
   { href: "/leads", label: "לידים", icon: Users },
-  { href: "/tasks", label: "משימות", icon: ListTodo },
-  { href: "/pipeline", label: "פייפליין", icon: KanbanSquare },
+  { href: "/tasks", label: "המשימות שלי", icon: ListTodo },
+  { href: "/pipeline", label: "מסלול המכירה", icon: KanbanSquare },
 ] satisfies Array<{ href: Route; label: string; icon: LucideIcon }>;
 
 type NavigationBadges = Partial<Record<"/leads" | "/tasks", number>>;

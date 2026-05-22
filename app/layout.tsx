@@ -8,8 +8,8 @@ const heebo = Heebo({
 });
 
 export const metadata: Metadata = {
-  title: "ניהול לקוחות למאמנים",
-  description: "מערכת CRM לניהול לידים, משימות, פייפליין וסגירה יומית למאמנים ויועצים",
+  title: "מרכז השליטה של העסק שלך",
+  description: "מערכת CRM לניהול לידים, המשימות שלי, מסלול המכירה וסגירה יומית למאמנים ויועצים",
 };
 
 export default function RootLayout({
