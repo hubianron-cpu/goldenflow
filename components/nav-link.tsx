@@ -7,7 +7,7 @@ import { KanbanSquare, LayoutDashboard, ListTodo, Users, type LucideIcon } from 
 import { cn } from "@/lib/utils";
 
 const navigation = [
-  { href: "/dashboard", label: "מרכז שליטה", icon: LayoutDashboard },
+  { href: "/dashboard", label: "מרכז השליטה", icon: LayoutDashboard },
   { href: "/leads", label: "לידים", icon: Users },
   { href: "/tasks", label: "המשימות שלי", icon: ListTodo },
   { href: "/pipeline", label: "מסלול המכירה", icon: KanbanSquare },

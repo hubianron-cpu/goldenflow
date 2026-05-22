@@ -295,10 +295,10 @@ export function PipelineBoard() {
                           </div>
                         </div>
 
-                        <div className="mt-3 grid grid-cols-3 gap-2">
+                        <div className="mt-3 flex max-w-full flex-wrap gap-2">
                           {lead.phone ? (
                             <a
-                              className="button-secondary min-h-10 px-2 py-2 text-xs"
+                              className="button-secondary min-h-10 min-w-[72px] flex-1 px-2 py-2 text-xs"
                               href={`tel:${lead.phone}`}
                               onClick={(event) => {
                                 event.stopPropagation();
@@ -308,11 +308,11 @@ export function PipelineBoard() {
                               שיחה
                             </a>
                           ) : (
-                            <span className="button-secondary min-h-10 cursor-not-allowed px-2 py-2 text-xs opacity-50">שיחה</span>
+                            <span className="button-secondary min-h-10 min-w-[72px] flex-1 cursor-not-allowed px-2 py-2 text-xs opacity-50">שיחה</span>
                           )}
                           {lead.phone ? (
                             <a
-                              className="button-secondary min-h-10 px-2 py-2 text-xs"
+                              className="button-secondary min-h-10 w-11 flex-none px-2 py-2 text-xs"
                               href={getWhatsappUrl(lead.phone)}
                               onClick={(event) => {
                                 event.stopPropagation();
@@ -323,12 +323,12 @@ export function PipelineBoard() {
                               <MessageCircle className="h-3.5 w-3.5" />
                             </a>
                           ) : (
-                            <span className="button-secondary min-h-10 cursor-not-allowed px-2 py-2 text-xs opacity-50">
+                            <span className="button-secondary min-h-10 w-11 flex-none cursor-not-allowed px-2 py-2 text-xs opacity-50">
                               <MessageCircle className="h-3.5 w-3.5" />
                             </span>
                           )}
                           <button
-                            className="button-secondary min-h-10 px-2 py-2 text-xs"
+                            className="button-secondary min-h-10 min-w-[86px] flex-1 px-2 py-2 text-xs"
                             disabled={isPending}
                             onClick={(event) => {
                               event.stopPropagation();

@@ -1169,16 +1169,16 @@ export function DashboardMetrics() {
                           <p className="text-xl font-black leading-none text-gold-soft drop-shadow-[0_0_16px_rgba(201,162,39,0.18)]">{formatMoney(lead.value)}</p>
                         </div>
 
-                        <div className="mt-3 grid grid-cols-[1fr_40px_58px_72px_auto] gap-2.5">
+                        <div className="mt-3 flex max-w-full flex-wrap gap-2">
                           {lead.phone ? (
-                            <a className="button-secondary min-h-9 px-2 py-1.5 text-xs active:scale-[0.97]" href={`tel:${lead.phone}`} onClick={markUserAction}>
+                            <a className="button-secondary min-h-9 min-w-[64px] flex-1 px-2 py-1.5 text-xs active:scale-[0.97]" href={`tel:${lead.phone}`} onClick={markUserAction}>
                               שיחה
                             </a>
                           ) : (
-                            <span className="button-secondary min-h-9 cursor-not-allowed px-2 py-1.5 text-xs opacity-50">שיחה</span>
+                            <span className="button-secondary min-h-9 min-w-[64px] flex-1 cursor-not-allowed px-2 py-1.5 text-xs opacity-50">שיחה</span>
                           )}
                           <a
-                            className="button-secondary min-h-9 px-2 py-1.5 text-xs active:scale-[0.97]"
+                            className="button-secondary min-h-9 w-10 flex-none px-2 py-1.5 text-xs active:scale-[0.97]"
                             href={getWhatsappUrl(lead.phone, `היי ${lead.name}, רציתי לבדוק איך אפשר להתקדם.`)}
                             onClick={markUserAction}
                             rel="noreferrer"
@@ -1186,14 +1186,14 @@ export function DashboardMetrics() {
                           >
                             💬
                           </a>
-                          <button className="button-secondary min-h-9 px-2 py-1.5 text-xs active:scale-[0.97]" disabled={updatingLeadId === lead.id} onClick={() => handleLeadHandled(lead.id)} title="סימנתי שטיפלתי בליד והתקדמתי לשלב הבא" type="button">
+                          <button className="button-secondary min-h-9 min-w-[72px] flex-1 px-2 py-1.5 text-xs active:scale-[0.97]" disabled={updatingLeadId === lead.id} onClick={() => handleLeadHandled(lead.id)} title="סימנתי שטיפלתי בליד והתקדמתי לשלב הבא" type="button">
                             ✔ טיפלתי
                           </button>
-                          <button className="button-secondary min-h-9 px-2 py-1.5 text-xs active:scale-[0.97]" disabled={updatingLeadId === lead.id} onClick={() => handleLeadHandled(lead.id)} type="button">
+                          <button className="button-secondary min-h-9 min-w-[82px] flex-1 px-2 py-1.5 text-xs active:scale-[0.97]" disabled={updatingLeadId === lead.id} onClick={() => handleLeadHandled(lead.id)} type="button">
                             קבע שיחה
                           </button>
                           <button
-                            className="rounded-xl border border-white/10 bg-white/[0.04] px-2 py-1.5 text-[11px] text-zinc-300 transition duration-200 hover:border-gold/30 hover:text-gold-soft active:scale-[0.97]"
+                            className="min-h-9 min-w-[58px] flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-2 py-1.5 text-[11px] text-zinc-300 transition duration-200 hover:border-gold/30 hover:text-gold-soft active:scale-[0.97]"
                             onClick={() => setExpandedDailyLeadId((current) => (current === lead.id ? null : lead.id))}
                             type="button"
                           >
@@ -1309,8 +1309,8 @@ export function DashboardMetrics() {
               </div>
               <p className="mt-3 min-h-8 text-xs leading-4 text-zinc-500">{sublabel}</p>
             </div>
-            <div className="mt-6">
-              <p className="number-rise text-5xl font-black leading-none tracking-tight text-white drop-shadow-[0_0_18px_rgba(201,162,39,0.12)] sm:text-6xl">{value}</p>
+            <div className="mt-6 min-w-0 overflow-visible">
+              <p className="number-rise max-w-full whitespace-nowrap text-[clamp(2rem,4.2vw,3.5rem)] font-black leading-none tracking-tight text-white drop-shadow-[0_0_18px_rgba(201,162,39,0.12)]">{value}</p>
               <p className="mt-4 min-h-10 text-xs leading-5 text-zinc-500">{meta}</p>
             </div>
           </article>
