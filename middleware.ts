@@ -2,12 +2,39 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { hasSupabaseEnv } from "@/lib/env";
 
+function isPublicPath(pathname: string) {
+  return (
+    pathname === "/login" ||
+    pathname.startsWith("/api/") ||
+    pathname.startsWith("/lead") ||
+    pathname.startsWith("/_next/") ||
+    pathname === "/favicon.ico"
+  );
+}
+
+function redirectToLogin(request: NextRequest, response: NextResponse) {
+  const url = request.nextUrl.clone();
+  url.pathname = "/login";
+  url.search = "";
+
+  const redirectResponse = NextResponse.redirect(url);
+
+  request.cookies.getAll().forEach((cookie) => {
+    if (cookie.name.startsWith("sb-")) {
+      redirectResponse.cookies.delete(cookie.name);
+      response.cookies.delete(cookie.name);
+    }
+  });
+
+  return redirectResponse;
+}
+
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
     request,
   });
 
-  if (!hasSupabaseEnv()) {
+  if (!hasSupabaseEnv() || isPublicPath(request.nextUrl.pathname)) {
     return response;
   }
 
@@ -36,10 +63,22 @@ export async function middleware(request: NextRequest) {
     },
   );
 
-  await supabase.auth.getUser();
+  try {
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
+
+    if (error || !user) {
+      return redirectToLogin(request, response);
+    }
+  } catch {
+    return redirectToLogin(request, response);
+  }
+
   return response;
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"],
+  matcher: ["/dashboard/:path*", "/leads/:path*", "/tasks/:path*", "/pipeline/:path*", "/admin/:path*"],
 };

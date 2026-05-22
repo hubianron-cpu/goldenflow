@@ -1,7 +1,9 @@
-import { AlertTriangle, LogIn, UserPlus } from "lucide-react";
+import { AlertTriangle, LogIn } from "lucide-react";
 import { StatusMessage } from "@/components/status-message";
 import { hasSupabaseEnv } from "@/lib/env";
-import { signIn, signUp } from "@/lib/actions";
+import { signIn } from "@/lib/actions";
+
+const whatsappHref = `https://wa.me/?text=${encodeURIComponent("היי רון, אני רוצה לפתוח מנוי למערכת CRM")}`;
 
 export default async function LoginPage({
   searchParams,
@@ -10,6 +12,7 @@ export default async function LoginPage({
 }) {
   const params = await searchParams;
   const supabaseReady = hasSupabaseEnv();
+  const visibleError = params.error === "fetch failed" ? undefined : params.error;
 
   return (
     <main className="mx-auto flex min-h-screen max-w-6xl items-center px-4 py-8">
@@ -42,7 +45,7 @@ export default async function LoginPage({
           <p className="mt-2 text-sm text-zinc-400">התחברו כדי לנהל לידים, משימות ופייפליין מכירה.</p>
 
           <div className="mt-5">
-            <StatusMessage error={params.error} success={params.success} />
+            <StatusMessage error={visibleError} success={params.success} />
           </div>
 
           {!supabaseReady ? (
@@ -69,24 +72,12 @@ export default async function LoginPage({
 
           <div className="my-6 h-px bg-white/10" />
 
-          <form action={signUp} className="space-y-4">
-            <label className="block text-sm font-semibold text-zinc-200">
-              שם פרטי
-              <input name="first_name" className="field mt-2" minLength={2} required disabled={!supabaseReady} />
-            </label>
-            <label className="block text-sm font-semibold text-zinc-200">
-              מייל חדש
-              <input name="email" type="email" className="field mt-2" required disabled={!supabaseReady} />
-            </label>
-            <label className="block text-sm font-semibold text-zinc-200">
-              סיסמה חדשה
-              <input name="password" type="password" className="field mt-2" minLength={6} required disabled={!supabaseReady} />
-            </label>
-            <button type="submit" className="button-secondary w-full gap-2" disabled={!supabaseReady}>
-              <UserPlus className="h-4 w-4" />
-              יצירת חשבון
-            </button>
-          </form>
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-center">
+            <p className="text-sm text-zinc-300">עדיין אין לך חשבון?</p>
+            <a href={whatsappHref} className="button-secondary mt-3 w-full" target="_blank" rel="noreferrer">
+              פתיחת מנוי למערכת
+            </a>
+          </div>
         </section>
       </div>
     </main>
