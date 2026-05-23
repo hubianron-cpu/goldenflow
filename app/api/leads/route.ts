@@ -289,8 +289,6 @@ async function createAutomatedTask(
     return { error: getSupabaseErrorMessage(taskError) };
   }
 
-  console.log("AUTO_TASK_CREATED", task);
-
   const { error: logError } = await supabase.from("task_automations_log").insert({
     lead_id: lead.id,
     rule_type: ruleType,
@@ -499,7 +497,6 @@ export async function POST(request: Request) {
     return jsonError(getSupabaseErrorMessage(error), 500, getSupabaseErrorMeta(error));
   }
 
-  console.log("LEAD_CREATED", data);
   const automationError = await runTaskAutomations(writeSupabase, data as Lead, ownerId, { newLead: true });
 
   return NextResponse.json(

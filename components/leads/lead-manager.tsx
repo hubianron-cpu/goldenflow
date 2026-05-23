@@ -261,7 +261,6 @@ export function LeadManager() {
 
   function handleCreateLead(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log("ADD_LEAD_CLICKED");
     setError("");
     setSuccess("");
 
@@ -292,8 +291,6 @@ export function LeadManager() {
         return;
       }
 
-      console.log("LEAD_CREATED", payload.lead);
-
       if (payload.lead) {
         setLeads((current) => [payload.lead, ...current.filter((lead) => lead.id !== payload.lead.id)]);
       }
@@ -306,7 +303,6 @@ export function LeadManager() {
       }
 
       await loadLeads();
-      console.log("LEADS_REFETCHED");
     });
   }
 
