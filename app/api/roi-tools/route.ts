@@ -42,6 +42,19 @@ function getSupabaseErrorMeta(error: {
   };
 }
 
+function getRoiToolsErrorMessage(error: {
+  code?: string;
+  message?: string;
+}) {
+  const message = error.message?.toLowerCase() ?? "";
+
+  if (error.code === "42P01" || error.code === "PGRST205" || message.includes("roi_tools")) {
+    return "טבלת ROI עדיין לא קיימת ב-Supabase. יש להריץ את קובץ ה-SQL של מרכז ROI ואז לרענן את הדף.";
+  }
+
+  return error.message || "לא הצלחנו להשלים את הפעולה במרכז ROI.";
+}
+
 async function getContext() {
   if (!hasSupabaseEnv()) {
     return { error: jsonError("Supabase is not configured.", 503) };
@@ -147,7 +160,7 @@ export async function GET() {
     .order("created_at", { ascending: false });
 
   if (error) {
-    return jsonError(error.message, 500, getSupabaseErrorMeta(error));
+    return jsonError(getRoiToolsErrorMessage(error), 500, getSupabaseErrorMeta(error));
   }
 
   return NextResponse.json({ tools: data ?? [] }, { status: 200 });
@@ -189,7 +202,7 @@ export async function POST(request: Request) {
     .single();
 
   if (error) {
-    return jsonError(error.message, 500, getSupabaseErrorMeta(error));
+    return jsonError(getRoiToolsErrorMessage(error), 500, getSupabaseErrorMeta(error));
   }
 
   return NextResponse.json({ tool: data }, { status: 201 });
@@ -237,7 +250,7 @@ export async function PATCH(request: Request) {
     .single();
 
   if (error) {
-    return jsonError(error.message, 500, getSupabaseErrorMeta(error));
+    return jsonError(getRoiToolsErrorMessage(error), 500, getSupabaseErrorMeta(error));
   }
 
   return NextResponse.json({ tool: data }, { status: 200 });
@@ -271,7 +284,7 @@ export async function DELETE(request: Request) {
     .single();
 
   if (error) {
-    return jsonError(error.message, 500, getSupabaseErrorMeta(error));
+    return jsonError(getRoiToolsErrorMessage(error), 500, getSupabaseErrorMeta(error));
   }
 
   return NextResponse.json({ deleted: data?.id ?? id }, { status: 200 });
